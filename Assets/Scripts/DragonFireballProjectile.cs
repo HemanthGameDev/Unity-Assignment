@@ -142,6 +142,12 @@ public class DragonFireballProjectile : MonoBehaviour
         {
             if (debugLogs) Debug.Log($"[Fireball] Hit {target.name} for {damage}", this);
             target.TakeDamage(damage);
+
+            // Confirmed projectile hit only — fizzle/expire never reach this.
+            var ownerSfx = owner != null
+                ? owner.GetComponent<DragonSFXController>()
+                : null;
+            if (ownerSfx != null) ownerSfx.PlayHit();      // NEW
         }
 
         if (impactVfxPool != null)

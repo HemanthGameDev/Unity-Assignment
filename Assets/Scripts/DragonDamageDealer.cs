@@ -39,6 +39,9 @@ public class DragonDamageDealer : MonoBehaviour
     [Header("Debug")]
     [Tooltip("Logs why each Animation Event hit landed or was rejected. Turn off when stable.")]
     [SerializeField] private bool debugLog = true;
+    
+    [Header("SFX")]
+    [SerializeField] private DragonSFXController sfx;   // NEW
 
     private readonly float[] lastHitTime = { -999f, -999f, -999f };
     private static readonly string[] attackNames = { "Fire", "Tail", "Fly" };
@@ -58,6 +61,8 @@ public class DragonDamageDealer : MonoBehaviour
     {
         if (owner == null)
             owner = GetComponentInParent<DragonHealth>();
+        if (sfx == null)                                   // NEW
+            sfx = GetComponentInParent<DragonSFXController>(); // NEW
     }
 
     private void Start()
@@ -191,6 +196,9 @@ public class DragonDamageDealer : MonoBehaviour
 
         // Apply damage first.
         target.TakeDamage(attack.damage);
+
+        // Confirmed hit only — misses never reach this line.
+        if (sfx != null) sfx.PlayHit();                    // NEW
 
         // -----------------------------------------------------
         // TAIL KNOCKBACK
