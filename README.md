@@ -8,6 +8,11 @@ The project features a player-controlled dragon battling an AI-controlled dragon
 
 ## Gameplay Video
 
+
+Uploading GamePlayVideo.mp4…
+
+
+
 [Watch the Gameplay Video](https://youtu.be/7RpiYfHHxME?si=LHeyKaAkSZB4POX5)
 
 The video demonstrates the player movement, all three abilities, AI combat, health/cooldown UI, combat feedback, and the Winner Screen.
